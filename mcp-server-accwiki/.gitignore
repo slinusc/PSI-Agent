@@ -1,0 +1,22 @@
+# Environment
+.env
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Models cache
+models/
+*.pt
+*.bin
+*.onnx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

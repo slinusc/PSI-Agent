@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "psi-accelerator-knowledge": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "psi-mcp-server",
+        "python3",
+        "/app/server.py"
+      ],
+      "description": "PSI Accelerator Knowledge Graph - Search accelerator documentation and technical specs"
+    }
+  }
+}
