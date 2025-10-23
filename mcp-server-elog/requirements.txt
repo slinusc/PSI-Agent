@@ -1,0 +1,13 @@
+# ELOG MCP Server Requirements
+# =============================
+
+# MCP Protocol
+mcp
+
+# ELOG Python client
+requests
+lxml
+beautifulsoup4
+
+# Logging
+colorama

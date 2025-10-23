@@ -16,11 +16,11 @@ services:
       - MCP_ELOG_URL=http://mcp-server-elog:8002
       - MCP_ACCWIKI_URL=http://mcp-server-accwiki:8001
       - MCP_WEBSEARCH_URL=http://mcp-server-websearch:8003
-      - DATABASE_URL=postgresql://chainlit:chainlit_pass@postgres-chainlit:5432/chainlit
+      - DATABASE_URL=${DATABASE_URL}
       - CHAINLIT_AUTH_SECRET=${CHAINLIT_AUTH_SECRET}
-      - CHAINLIT_ADMIN_USERNAME=${CHAINLIT_ADMIN_USERNAME:-admin@chainlit.com}
-      - CHAINLIT_ADMIN_PASSWORD=${CHAINLIT_ADMIN_PASSWORD:-admin}
-      - PYTHONUNBUFFERED=1
+      - CHAINLIT_ADMIN_USERNAME=${CHAINLIT_ADMIN_USERNAME}
+      - CHAINLIT_ADMIN_PASSWORD=${CHAINLIT_ADMIN_PASSWORD}
+      - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
     volumes:
       - ./app:/app
       - chainlit-uploads:/app/data/uploads
@@ -45,15 +45,15 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
     environment:
-      - POSTGRES_DB=chainlit
-      - POSTGRES_USER=chainlit
-      - POSTGRES_PASSWORD=chainlit_pass
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - postgres-chainlit-data:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U chainlit"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -73,8 +73,8 @@ services:
     ports:
       - "8002:8002"
     environment:
-      - ELOG_URL=${ELOG_URL:-https://elog-gfa.psi.ch/SwissFEL+commissioning/}
-      - PYTHONUNBUFFERED=1
+      - ELOG_URL=${ELOG_URL}
+      - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
     volumes:
       - ./mcp-server-elog/elog_mcp:/app/elog_mcp
     restart: unless-stopped
@@ -100,13 +100,13 @@ services:
       - "8001:8001"
     environment:
       - NEO4J_URI=bolt://neo4j:7687
-      - NEO4J_USER=neo4j
-      - NEO4J_PASS=
-      - EMBED_MODEL=BAAI/bge-m3
-      - USE_CUDA=auto
-      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-      - HF_TOKEN=${HF_TOKEN:-}
-      - PYTHONUNBUFFERED=1
+      - NEO4J_USER=${NEO4J_USER}
+      - NEO4J_PASS=${NEO4J_PASS}
+      - EMBED_MODEL=${EMBED_MODEL}
+      - USE_CUDA=${USE_CUDA}
+      - PYTORCH_CUDA_ALLOC_CONF=${PYTORCH_CUDA_ALLOC_CONF}
+      - HF_TOKEN=${HF_TOKEN}
+      - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
     volumes:
       - ./mcp-server-accwiki/accwiki_mcp:/app/accwiki_mcp
       - model_cache:/root/.cache/huggingface
@@ -142,8 +142,8 @@ services:
       - "8003:8003"
     environment:
       - SEARXNG_URL=http://searxng:8080
-      - SEARXNG_TIMEOUT=10.0
-      - PYTHONUNBUFFERED=1
+      - SEARXNG_TIMEOUT=${SEARXNG_TIMEOUT}
+      - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
     volumes:
       - ./mcp-server-websearch/websearch_mcp:/app/websearch_mcp
     depends_on:
@@ -197,7 +197,7 @@ services:
       - ./mcp-server-websearch/config:/etc/searxng:rw
       - ./mcp-server-websearch/data:/var/cache/searxng:rw
     environment:
-      - SEARXNG_BASE_URL=http://localhost:8888/
+      - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
     restart: unless-stopped
     networks:
       - psi-network

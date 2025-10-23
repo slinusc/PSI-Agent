@@ -11,6 +11,7 @@ Flow:
 
 import json
 import logging
+import os
 from typing import Dict, Any, List, Optional, Annotated, Literal
 from typing_extensions import TypedDict
 
@@ -29,38 +30,45 @@ logger = logging.getLogger("psi.chainlit.langgraph_agent")
 # Model Configuration
 # ============================================================================
 
+# Get Ollama host from environment variable
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+
 # Centralized model configuration for each node
 # Change these to experiment with different models for different tasks
+
+LLM = "gpt-oss:20b-65k"
+VLM = "gemma3:12b"
+
 NODE_MODELS = {
     "decide_tools": {
-        "model": "gpt-oss:20b-65k",
+        "model": LLM,
         "temperature": 0.1,
-        "base_url": "http://localhost:11434"
+        "base_url": OLLAMA_HOST
     },
     "select_tools": {
-        "model": "gpt-oss:20b-65k",
+        "model": LLM,
         "temperature": 0.2,
-        "base_url": "http://localhost:11434"
+        "base_url": OLLAMA_HOST
     },
     "evaluate_results": {
-        "model": "gpt-oss:20b-65k",
+        "model": LLM,
         "temperature": 0.1,
-        "base_url": "http://localhost:11434"
+        "base_url": OLLAMA_HOST
     },
     "generate_answer_with_tools": {
-        "model": "gpt-oss:20b-65k",
+        "model": LLM,
         "temperature": 0.3,
-        "base_url": "http://localhost:11434"
+        "base_url": OLLAMA_HOST
     },
     "generate_answer_no_tools": {
-        "model": "gpt-oss:20b-65k",
+        "model": LLM,
         "temperature": 0.3,
-        "base_url": "http://localhost:11434"
+        "base_url": OLLAMA_HOST
     },
     "vision_answer": {
-        "model": "gemma3:12b",
+        "model": VLM,
         "temperature": 0.3,
-        "base_url": "http://localhost:11434"
+        "base_url": OLLAMA_HOST
     }
 }
 

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "swissfel-elog": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "mcp-server-elog",
+        "python3",
+        "/app/server.py"
+      ],
+      "description": "SwissFEL ELOG - Search electronic logbook entries with semantic ranking and temporal filtering"
+    }
+  }
+}

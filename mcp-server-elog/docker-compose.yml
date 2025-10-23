@@ -1,0 +1,26 @@
+services:
+  mcp-server-elog:
+    build:
+      context: .      
+      dockerfile: Dockerfile            
+    container_name: mcp-server-elog
+    command: ["python3", "server.py"]
+    ports:
+      - "8002:8002"                     # expose REST + SSE API
+    environment:
+      - ELOG_URL=${ELOG_URL:-https://elog-gfa.psi.ch/SwissFEL+commissioning/}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./server.py:/app/server.py
+      - ./elog_tools.py:/app/elog_tools.py
+      - ./elog_constants.py:/app/elog_constants.py
+      - ./logbook.py:/app/logbook.py
+    restart: unless-stopped
+    stdin_open: false
+    tty: false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

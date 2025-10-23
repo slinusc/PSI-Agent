@@ -1,0 +1,215 @@
+# ============================================================================
+# SENSITIVE FILES - NEVER COMMIT
+# ============================================================================
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+
+# Secrets and credentials
+secrets/
+*.pem
+*.key
+*.crt
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.hypothesis/
+*.cover
+.cache
+nosetests.xml
+coverage.xml
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# ============================================================================
+# VIRTUAL ENVIRONMENTS
+# ============================================================================
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+psi.venv/
+.venv/
+
+# ============================================================================
+# DATABASES
+# ============================================================================
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# PostgreSQL
+*.sql.gz
+
+# ============================================================================
+# CHAINLIT SPECIFIC
+# ============================================================================
+
+# Logs
+app/logs/
+logs/
+*.log
+
+# Chainlit build artifacts
+app/.chainlit/build/
+.chainlit/build/
+
+# Chainlit data directory (database and uploads)
+app/data/
+data/
+
+# ============================================================================
+# DOCKER
+# ============================================================================
+.dockerignore
+docker-compose.override.yml
+
+# ============================================================================
+# IDEs & EDITORS
+# ============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw[a-z]
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================================================
+# OS SPECIFIC
+# ============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# ============================================================================
+# NODE / NPM (if using frontend tools)
+# ============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ============================================================================
+# MACHINE LEARNING / AI
+# ============================================================================
+# Model caches
+.cache/
+*.ckpt
+*.pth
+*.pt
+checkpoints/
+
+# HuggingFace cache (already in Docker volume, don't commit local)
+.cache/huggingface/
+
+# ============================================================================
+# MCP SERVER SPECIFIC
+# ============================================================================
+# SearXNG
+mcp-server-websearch/data/
+mcp-server-websearch/config/settings.local.yml
+
+# ELOG cache
+mcp-server-elog/.cache/
+mcp-server-elog/data/
+
+# AccWiki cache
+mcp-server-accwiki/.cache/
+mcp-server-accwiki/data/
+
+# ============================================================================
+# TEMPORARY FILES
+# ============================================================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.rej
+test_*.json
+*_example.json
+scratch/
+temp/
+
+# ============================================================================
+# DOCUMENTATION BUILD
+# ============================================================================
+docs/_build/
+site/

@@ -38,7 +38,7 @@ def build_system_context() -> str:
 - Provide concise, accurate, and scientific answers
 - Ground your responses in factual information
 - Use proper technical terminology
-- Cite sources when using external information
+- Cite sources when using external information, (always provide a clickable link if available)
 """
 
 
